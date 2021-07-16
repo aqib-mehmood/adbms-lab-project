@@ -5,6 +5,8 @@
  */
 package femail_pms;
 
+import javax.swing.JOptionPane;
+import javax.swing.*;  
 /**
  *
  * @author aqias
@@ -15,8 +17,11 @@ public class SignupForm extends javax.swing.JFrame {
      * Creates new form SignupForm
      */
     public SignupForm() {
+        
         initComponents();
     }
+    ParkingDatabase parkingdb;
+    JFrame f;  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,12 +82,22 @@ public class SignupForm extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Reset");
+        jButton1.setText("Go to Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 90, 239));
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Submit");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 90, 239));
@@ -133,7 +148,7 @@ public class SignupForm extends javax.swing.JFrame {
                             .addComponent(confirmpass_lbl)
                             .addComponent(password_txtbox)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -174,6 +189,31 @@ public class SignupForm extends javax.swing.JFrame {
     private void username_txtboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_txtboxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_username_txtboxActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        // TODO add your handling code here:
+        LoginForm log = new LoginForm();
+        this.setVisible(false);
+        log.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         
+           if (password_txtbox.getText().equals(jPasswordField2.getText())) {
+                      parkingdb = new ParkingDatabase();
+                      
+                      String query="INSERT into employeeTable(employeeID,employeeUserName,employeePassword)VALUES('"+Integer.parseInt(employeeid_txtbox.getText())+"','"+username_txtbox.getText()+"','"+password_txtbox.getText()+"')";
+                      parkingdb.DataInsert(query);
+                      JOptionPane.showMessageDialog(f,"Signed up Successfully.","Alert",JOptionPane.WARNING_MESSAGE);
+                  
+        }
+                     else{
+                     JOptionPane.showMessageDialog(f,"Please Recheck password and confirm password","Alert",JOptionPane.WARNING_MESSAGE);
+              
+                     }
+                      
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

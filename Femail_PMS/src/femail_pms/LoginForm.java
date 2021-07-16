@@ -5,6 +5,8 @@
  */
 package femail_pms;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aqias
@@ -41,7 +43,6 @@ public class LoginForm extends javax.swing.JFrame {
         setTitle("Login Form");
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(0, 51, 51));
-        setPreferredSize(new java.awt.Dimension(658, 498));
         setResizable(false);
 
         password_txtbox.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -51,12 +52,22 @@ public class LoginForm extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Reset");
+        jButton1.setText("Sigunp");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 90, 239));
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Login");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         password_lbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         password_lbl.setText("Password:");
@@ -138,6 +149,30 @@ public class LoginForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ParkingDatabase pakdb = new ParkingDatabase();
+        if(pakdb.DataManipulationOperation("Employeetable", Integer.parseInt(employeeid_txtbox.getText()), password_txtbox.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Successfully Login");
+            AdminDashboardForm admin = new AdminDashboardForm();
+            admin.setVisible(true);
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(this, " Login Failed Not Registered");
+           System.exit(0);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        SignupForm signup = new SignupForm();
+        this.setVisible(false);
+        signup.setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
