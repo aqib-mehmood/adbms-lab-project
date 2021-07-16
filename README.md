@@ -34,3 +34,4 @@ Our main goal is to create a fully automated Vehicle’s parking system with min
 •	Easy to use Interface for users (admin, staff member, clients etc.).
 
 
+# Parking-Management-System-Java-Net-Beans-and-Oracle-Sql-Developer-
